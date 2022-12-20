@@ -1,36 +1,25 @@
 ﻿/*
-Name:       ImageFlow
-Version:    1.3.0 (March 9 2010)
-Author:     Finn Rudolph
-Support:    http://finnrudolph.de/ImageFlow
-
-License:    ImageFlow is licensed under a Creative Commons
-            Attribution-Noncommercial 3.0 Unported License
-            (http://creativecommons.org/licenses/by-nc/3.0/).
-
-            You are free:
-                + to Share - to copy, distribute and transmit the work
-                + to Remix - to adapt the work
-
-            Under the following conditions:
-                + Attribution. You must attribute the work in the manner specified by the author or licensor
-                  (but not in any way that suggests that they endorse you or your use of the work).
-                + Noncommercial. You may not use this work for commercial purposes.
-
-            + For any reuse or distribution, you must make clear to others the license terms of this work.
-            + Any of the above conditions can be waived if you get permission from the copyright holder.
-            + Nothing in this license impairs or restricts the author's moral rights.
-
-Credits:    This script is based on Michael L. Perrys Cover flow in Javascript [1].
-            The reflections are generated server-sided by a slightly hacked version
-            of Richard Daveys easyreflections [2] written in PHP. The mouse wheel
-            support is an implementation of Adomas Paltanavicius JavaScript mouse
-            wheel code [3]. It also uses the domReadyEvent from Tanny O'Haley [4].
-
-            [1] http://www.adventuresinsoftware.com/blog/?p=104#comment-1981
-            [2] http://reflection.corephp.co.uk/v2.php
-            [3] http://adomas.org/javascript-mouse-wheel/
-            [4] http://tanny.ica.com/ICA/TKO/tkoblog.nsf/dx/domcontentloaded-for-browsers-part-v
+	*	 Name:       ImageFlowTheta
+    *    Version:    Version 0.9 (December 20 2022)
+    *	 Author:     Bounza
+    * 	 Original Author: Finn Rudolph
+    *
+    *   This script is based on ImageFlow 1.3.0 by Finn Rudolph (http://finnrudolph.de/ImageFlow)
+    * 	The script to implement the touchscreen support is based on PADILICIOUS.COM's work (http://padilicious.com/code/touchevents/index.html)
+	*
+	*   - Version 0.8: Adds support for touchscreen devices (June 10 2022)
+	*   - Version 0.9: Update some bit of code (December 20 2022)
+	*
+	*  Original credits:
+            * This script is based on Michael L. Perrys Cover flow in Javascript [1].
+            * The reflections are generated server-sided by a slightly hacked version
+            * of Richard Daveys easyreflections [2] written in PHP. The mouse wheel
+            * support is an implementation of Adomas Paltanavicius JavaScript mouse
+            * wheel code [3]. It also uses the domReadyEvent from Tanny O'Haley [4].
+            * [1] http://www.adventuresinsoftware.com/blog/?p=104#comment-1981
+            * [2] http://reflection.corephp.co.uk/v2.php
+            * [3] http://adomas.org/javascript-mouse-wheel/
+            * [4] http://tanny.ica.com/ICA/TKO/tkoblog.nsf/dx/domcontentloaded-for-browsers-part-v
 */
 
 /* ImageFlow constructor */
@@ -38,60 +27,60 @@ function ImageFlow ()
 {
 	/* Setting option defaults */
 	this.defaults =
-	{
-		animationSpeed:     50,             /* Animation speed in ms */
-		aspectRatio:        1.964,          /* Aspect ratio of the ImageFlow container (width divided by height) */
-		buttons:            false,          /* Toggle navigation buttons */
-		captions:           true,           /* Toggle captions */
-		circular:           false,          /* Toggle circular rotation */
-		imageCursor:        'default',      /* Cursor type for all images - default is 'default' */
-		ImageFlowID:        'imageflow',    /* Default id of the ImageFlow container */
-		imageFocusM:        1.0,            /* Multiplicator for the focussed image size in percent */
-		imageFocusMax:      4,              /* Max number of images on each side of the focussed one */
-		imagePath:          '',             /* Path to the images relative to the reflect_.php script */
-		imageScaling:       true,           /* Toggle image scaling */ 
-		imagesHeight:       0.67,           /* Height of the images div container in percent */
-		imagesM:            1.0,            /* Multiplicator for all images in percent */
-		onClick:            function() { document.location = this.url; },   /* Onclick behaviour */
-		opacity:            false,          /* Toggle image opacity */
-		opacityArray:       [10,8,6,4,2],   /* Image opacity (range: 0 to 10) first value is for the focussed image */
-		percentLandscape:   118,            /* Scale landscape format */
-		percentOther:       100,            /* Scale portrait and square format */
-		preloadImages:      true,           /* Toggles loading bar (false: requires img attributes height and width) */
-		reflections:        true,           /* Toggle reflections */
-		reflectionGET:      '',             /* Pass variables via the GET method to the reflect_.php script */
-		reflectionP:        0.5,            /* Height of the reflection in percent of the source image */
-		reflectionPNG:      false,          /* Toggle reflect2.php or reflect3.php */
-		reflectPath:        '',             /* Path to the reflect_.php script */
-		scrollbarP:         0.6,            /* Width of the scrollbar in percent */
-		slider:             true,           /* Toggle slider */
-		sliderCursor:       'e-resize',     /* Slider cursor type - default is 'default' */
-		sliderWidth:        14,             /* Width of the slider in px */
-		slideshow:          false,          /* Toggle slideshow */
-		slideshowSpeed:     1500,           /* Time between slides in ms */
-		slideshowAutoplay:  false,          /* Toggle automatic slideshow play on startup */
-		startID:            1,              /* Image ID to begin with */
-		glideToStartID:     true,           /* Toggle glide animation to start ID */
-		startAnimation:     false,          /* Animate images moving in from the right on startup */
-		xStep:              150             /* Step width on the x-axis in px */
-	};
+		{
+			animationSpeed:     50,             /* Animation speed in ms */
+			aspectRatio:        1.964,          /* Aspect ratio of the ImageFlow container (width divided by height) */
+			buttons:            false,          /* Toggle navigation buttons */
+			captions:           true,           /* Toggle captions */
+			circular:           false,          /* Toggle circular rotation */
+			imageCursor:        'default',      /* Cursor type for all images - default is 'default' */
+			ImageFlowID:        'imageflow',    /* Default id of the ImageFlow container */
+			imageFocusM:        1.0,            /* Multiplicator for the focussed image size in percent */
+			imageFocusMax:      4,              /* Max number of images on each side of the focussed one */
+			imagePath:          '',             /* Path to the images relative to the reflect_.php script */
+			imageScaling:       true,           /* Toggle image scaling */
+			imagesHeight:       0.67,           /* Height of the images div container in percent */
+			imagesM:            1.0,            /* Multiplicator for all images in percent */
+			onClick:            function() { document.location = this.url; },   /* Onclick behaviour */
+			opacity:            false,          /* Toggle image opacity */
+			opacityArray:       [10,8,6,4,2],   /* Image opacity (range: 0 to 10) first value is for the focussed image */
+			percentLandscape:   118,            /* Scale landscape format */
+			percentOther:       100,            /* Scale portrait and square format */
+			preloadImages:      true,           /* Toggles loading bar (false: requires img attributes height and width) */
+			reflections:        false,           /* Toggle reflections */
+			reflectionGET:      '',             /* Pass variables via the GET method to the reflect_.php script */
+			reflectionP:        0.5,            /* Height of the reflection in percent of the source image */
+			reflectionPNG:      false,          /* Toggle reflect2.php or reflect3.php */
+			reflectPath:        '',             /* Path to the reflect_.php script */
+			scrollbarP:         0.6,            /* Width of the scrollbar in percent */
+			slider:             true,           /* Toggle slider */
+			sliderCursor:       'e-resize',     /* Slider cursor type - default is 'default' */
+			sliderWidth:        14,             /* Width of the slider in px */
+			slideshow:          false,          /* Toggle slideshow */
+			slideshowSpeed:     1500,           /* Time between slides in ms */
+			slideshowAutoplay:  false,          /* Toggle automatic slideshow play on startup */
+			startID:            1,              /* Image ID to begin with */
+			glideToStartID:     true,           /* Toggle glide animation to start ID */
+			startAnimation:     false,          /* Animate images moving in from the right on startup */
+			xStep:              150             /* Step width on the x-axis in px */
+		};
 
 
 	/* Closure for this */
-	var my = this;
+	const my = this;
 
 
 	/* Initiate ImageFlow */
 	this.init = function (options)
 	{
 		/* Evaluate options */
-		for(var name in my.defaults) 
+		for(const name in my.defaults)
 		{
 			this[name] = (options !== undefined && options[name] !== undefined) ? options[name] : my.defaults[name];
 		}
 
 		/* Try to get ImageFlow div element */
-		var ImageFlowDiv = document.getElementById(my.ImageFlowID);
+		const ImageFlowDiv = document.getElementById(my.ImageFlowID);
 		if(ImageFlowDiv)
 		{
 			/* Set it global within the ImageFlow scope */
@@ -120,8 +109,8 @@ function ImageFlow ()
 				this.busy = false;
 
 				/* Set height of the ImageFlow container and center the loading bar */
-				var width = this.ImageFlowDiv.offsetWidth;
-				var height = Math.round(width / my.aspectRatio);
+				const width = this.ImageFlowDiv.offsetWidth;
+				const height = Math.round(width / my.aspectRatio);
 				document.getElementById(my.ImageFlowID+'_loading_txt').style.paddingTop = ((height * 0.5) -22) + 'px';
 				ImageFlowDiv.style.height = height + 'px';
 
@@ -135,16 +124,17 @@ function ImageFlow ()
 	/* Create HTML Structure */
 	this.createStructure = function()
 	{
+		let index;
 		/* Create images div container */
-		var imagesDiv = my.Helper.createDocumentElement('div','images');
+		let imagesDiv = my.Helper.createDocumentElement('div', 'images');
 
 		/* Shift all images into the images div */
-		var node, version, src, imageNode;
-		var max = my.ImageFlowDiv.childNodes.length;
-		for(var index = 0; index < max; index++)
+		let node, version, src, imageNode;
+		let max = my.ImageFlowDiv.childNodes.length;
+		for(index = 0; index < max; index++)
 		{
 			node = my.ImageFlowDiv.childNodes[index];
-			if (node && node.nodeType == 1 && node.nodeName == 'IMG')
+			if (node && node.nodeType === 1 && node.nodeName === 'IMG')
 			{
 				/* Add 'reflect.php?img=' */
 				if(my.reflections === true)
@@ -165,9 +155,9 @@ function ImageFlow ()
 		if(my.circular)
 		{
 			/* Create temporary elements to hold the cloned images */
-			var first = my.Helper.createDocumentElement('div','images');
-			var last = my.Helper.createDocumentElement('div','images');
-			
+			const first = my.Helper.createDocumentElement('div', 'images');
+			const last = my.Helper.createDocumentElement('div', 'images');
+
 			/* Make sure, that there are enough images to use circular mode */
 			max = imagesDiv.childNodes.length;
 			if(max < my.imageFocusMax)
@@ -179,7 +169,7 @@ function ImageFlow ()
 			if(max > 1)
 			{
 				/* Clone the first and last images */
-				var i;
+				let i;
 				for(i = 0; i < max; i++)
 				{
 					/* Number of clones on each side equals the imageFocusMax */
@@ -209,7 +199,7 @@ function ImageFlow ()
 					imageNode = node.cloneNode(true);
 					last.appendChild(imageNode);
 				}
-				
+
 				/* Overwrite the imagesDiv with the new order */
 				imagesDiv = last;
 			}
@@ -218,44 +208,44 @@ function ImageFlow ()
 		/* Create slideshow button div and append it to the images div */
 		if(my.slideshow)
 		{
-			var slideshowButton = my.Helper.createDocumentElement('div','slideshow');
+			const slideshowButton = my.Helper.createDocumentElement('div', 'slideshow');
 			imagesDiv.appendChild(slideshowButton);
 		}
 
 		/* Create loading text container */
-		var loadingP = my.Helper.createDocumentElement('p','loading_txt');
-		var loadingText = document.createTextNode(' ');
+		const loadingP = my.Helper.createDocumentElement('p', 'loading_txt');
+		const loadingText = document.createTextNode(' ');
 		loadingP.appendChild(loadingText);
 
 		/* Create loading div container */
-		var loadingDiv = my.Helper.createDocumentElement('div','loading');
+		const loadingDiv = my.Helper.createDocumentElement('div', 'loading');
 
 		/* Create loading bar div container inside the loading div */
-		var loadingBarDiv = my.Helper.createDocumentElement('div','loading_bar');
+		const loadingBarDiv = my.Helper.createDocumentElement('div', 'loading_bar');
 		loadingDiv.appendChild(loadingBarDiv);
 
 		/* Create captions div container */
-		var captionDiv = my.Helper.createDocumentElement('div','caption');
+		const captionDiv = my.Helper.createDocumentElement('div', 'caption');
 
 		/* Create slider and button div container inside the scrollbar div */
-		var scrollbarDiv = my.Helper.createDocumentElement('div','scrollbar');
-		var sliderDiv = my.Helper.createDocumentElement('div','slider');
+		const scrollbarDiv = my.Helper.createDocumentElement('div', 'scrollbar');
+		const sliderDiv = my.Helper.createDocumentElement('div', 'slider');
 		scrollbarDiv.appendChild(sliderDiv);
 		if(my.buttons)
 		{
-			var buttonPreviousDiv = my.Helper.createDocumentElement('div','previous', 'button');
-			var buttonNextDiv = my.Helper.createDocumentElement('div','next', 'button');
+			const buttonPreviousDiv = my.Helper.createDocumentElement('div', 'previous', 'button');
+			const buttonNextDiv = my.Helper.createDocumentElement('div', 'next', 'button');
 			scrollbarDiv.appendChild(buttonPreviousDiv);
 			scrollbarDiv.appendChild(buttonNextDiv);
 		}
 
 		/* Create navigation div container beneath images div */
-		var navigationDiv = my.Helper.createDocumentElement('div','navigation');
+		const navigationDiv = my.Helper.createDocumentElement('div', 'navigation');
 		navigationDiv.appendChild(captionDiv);
 		navigationDiv.appendChild(scrollbarDiv);
-	
+
 		/* Update document structure and return true on success */
-		var success = false;
+		let success = false;
 		if (my.ImageFlowDiv.appendChild(imagesDiv) &&
 			my.ImageFlowDiv.appendChild(loadingP) &&
 			my.ImageFlowDiv.appendChild(loadingDiv) &&
@@ -266,7 +256,7 @@ function ImageFlow ()
 			for(index = 0; index < max; index++)
 			{
 				node = my.ImageFlowDiv.childNodes[index];
-				if (node && node.nodeType == 1 && node.nodeName == 'IMG')
+				if (node && node.nodeType === 1 && node.nodeName === 'IMG')
 				{
 					my.ImageFlowDiv.removeChild(node);
 				}
@@ -280,11 +270,11 @@ function ImageFlow ()
 	/* Manage loading progress and call the refresh function */
 	this.loadingProgress = function()
 	{
-		var p = my.loadingStatus();
+		const p = my.loadingStatus();
 		if((p < 100 || my.firstCheck) && my.preloadImages)
 		{
 			/* Insert a short delay if the browser loads rapidly from its cache */
-			if(my.firstCheck && p == 100)
+			if(my.firstCheck && p === 100)
 			{
 				my.firstCheck = false;
 				window.setTimeout(my.loadingProgress, 100);
@@ -314,7 +304,7 @@ function ImageFlow ()
 				my.MouseDrag.init();
 				my.Touch.init();
 				my.Key.init();
-				
+
 				/* Toggle slideshow */
 				if(my.slideshow)
 				{
@@ -334,13 +324,13 @@ function ImageFlow ()
 	/* Return loaded images in percent, set loading bar width and loading text */
 	this.loadingStatus = function()
 	{
-		var max = my.imagesDiv.childNodes.length;
-		var i = 0, completed = 0;
-		var image = null;
-		for(var index = 0; index < max; index++)
+		const max = my.imagesDiv.childNodes.length;
+		let i = 0, completed = 0;
+		let image = null;
+		for(let index = 0; index < max; index++)
 		{
 			image = my.imagesDiv.childNodes[index];
-			if(image && image.nodeType == 1 && image.nodeName == 'IMG')
+			if(image && image.nodeType === 1 && image.nodeName === 'IMG')
 			{
 				if(image.complete)
 				{
@@ -350,8 +340,8 @@ function ImageFlow ()
 			}
 		}
 
-		var finished = Math.round((completed/i)*100);
-		var loadingBar = document.getElementById(my.ImageFlowID+'_loading_bar');
+		const finished = Math.round((completed / i) * 100);
+		const loadingBar = document.getElementById(my.ImageFlowID + '_loading_bar');
 		loadingBar.style.width = finished+'%';
 
 		/* Do not count the cloned images */
@@ -361,8 +351,8 @@ function ImageFlow ()
 			completed = (finished < 1) ? 0 : Math.round((i/100)*finished);
 		}
 
-		var loadingP = document.getElementById(my.ImageFlowID+'_loading_txt');
-		var loadingTxt = document.createTextNode('loading images '+completed+'/'+i);
+		const loadingP = document.getElementById(my.ImageFlowID + '_loading_txt');
+		const loadingTxt = document.createTextNode('loading images ' + completed + '/' + i);
 		loadingP.replaceChild(loadingTxt,loadingP.firstChild);
 		return finished;
 	};
@@ -384,10 +374,10 @@ function ImageFlow ()
 		my.ImageFlowDiv.style.height = my.maxHeight + 'px';
 
 		/* Change images div properties */
-		my.imagesDiv.style.height =  my.imagesDivHeight + 'px'; 
-		
+		my.imagesDiv.style.height =  my.imagesDivHeight + 'px';
+
 		/* Change images div properties */
-		my.navigationDiv.style.height =  (my.maxHeight - my.imagesDivHeight) + 'px'; 
+		my.navigationDiv.style.height =  (my.maxHeight - my.imagesDivHeight) + 'px';
 
 		/* Change captions div properties */
 		my.captionDiv.style.width = my.imagesDivWidth + 'px';
@@ -409,16 +399,16 @@ function ImageFlow ()
 		}
 
 		/* Set the reflection multiplicator */
-		var multi = (my.reflections === true) ? my.reflectionP + 1 : 1;
+		const multi = (my.reflections === true) ? my.reflectionP + 1 : 1;
 
 		/* Set image attributes */
-		var max = my.imagesDiv.childNodes.length;
-		var i = 0;
-		var image = null;
-		for (var index = 0; index < max; index++)
+		const max = my.imagesDiv.childNodes.length;
+		let i = 0;
+		let image = null;
+		for (let index = 0; index < max; index++)
 		{
 			image = my.imagesDiv.childNodes[index];
-			if(image !== null && image.nodeType == 1 && image.nodeName == 'IMG')
+			if(image !== null && image.nodeType === 1 && image.nodeName === 'IMG')
 			{
 				this.indexArray[i] = index;
 
@@ -454,7 +444,7 @@ function ImageFlow ()
 					image.pc = my.percentOther;
 					image.pcMem = my.percentOther;
 				}
-				
+
 				/* Change image positioning */
 				if(my.imageScaling === false)
 				{
@@ -480,44 +470,39 @@ function ImageFlow ()
 
 			/* Override images and navigation div height */
 			my.imagesDiv.style.height =  image.h + 'px';
-			my.navigationDiv.style.height =  (my.maxHeight - image.h) + 'px'; 
+			my.navigationDiv.style.height =  (my.maxHeight - image.h) + 'px';
 		}
 
 		/* Handle startID on the first refresh */
-		if(my.firstRefresh)
-		{
+		let maxId;
+		if (my.firstRefresh) {
 			/* Reset variable */
 			my.firstRefresh = false;
 
 			/* Set imageID to the startID */
-			my.imageID = my.startID-1;
-			if (my.imageID < 0 )
-			{
+			my.imageID = my.startID - 1;
+			if (my.imageID < 0) {
 				my.imageID = 0;
 			}
 
 			/* Map image id range in cicular mode (ignore the cloned images) */
-			if(my.circular)
-			{	
+			if (my.circular) {
 				my.imageID = my.imageID + my.imageFocusMax;
 			}
 
 			/* Make sure, that the id is smaller than the image count  */
-			maxId = (my.circular) ?  (my.max-(my.imageFocusMax))-1 : my.max-1;
-			if (my.imageID > maxId)
-			{
+			maxId = (my.circular) ? (my.max - (my.imageFocusMax)) - 1 : my.max - 1;
+			if (my.imageID > maxId) {
 				my.imageID = maxId;
 			}
 
 			/* Toggle glide animation to start ID */
-			if(my.glideToStartID === false)
-			{
+			if (my.glideToStartID === false) {
 				my.moveTo(-my.imageID * my.xStep);
 			}
 
 			/* Animate images moving in from the right */
-			if(my.startAnimation)
-			{
+			if (my.startAnimation) {
 				my.moveTo(5000);
 			}
 		}
@@ -540,10 +525,10 @@ function ImageFlow ()
 		this.zIndex = my.max;
 
 		/* Main loop */
-		for (var index = 0; index < my.max; index++)
+		for (let index = 0; index < my.max; index++)
 		{
-			var image = my.imagesDiv.childNodes[my.indexArray[index]];
-			var currentImage = index * -my.xStep;
+			const image = my.imagesDiv.childNodes[my.indexArray[index]];
+			const currentImage = index * -my.xStep;
 
 			/* Enabled image scaling */
 			if(my.imageScaling)
@@ -556,15 +541,15 @@ function ImageFlow ()
 				}
 				else
 				{
-					var z = (Math.sqrt(10000 + x * x) + 100) * my.imagesM;
-					var xs = x / z * my.size + my.size;
+					const z = (Math.sqrt(10000 + x * x) + 100) * my.imagesM;
+					const xs = x / z * my.size + my.size;
 
 					/* Still hide images until they are processed, but set display style to block */
 					image.style.display = 'block';
 
 					/* Process new image height and width */
-					var newImageH = (image.h / image.w * image.pc) / z * my.size;
-					var newImageW = 0;
+					let newImageH = (image.h / image.w * image.pc) / z * my.size;
+					let newImageW = 0;
 					switch (newImageH > my.maxHeight)
 					{
 						case false:
@@ -577,7 +562,7 @@ function ImageFlow ()
 							break;
 					}
 
-					var newImageTop = (my.imagesDivHeight - newImageH) + ((newImageH / (my.reflectionP + 1)) * my.reflectionP);
+					const newImageTop = (my.imagesDivHeight - newImageH) + ((newImageH / (my.reflectionP + 1)) * my.reflectionP);
 
 					/* Set new image properties */
 					image.style.left = xs - (image.pc / 2) / z * my.size + 'px';
@@ -602,7 +587,7 @@ function ImageFlow ()
 					}
 
 					/* Change zIndex and onclick function of the focussed image */
-					switch ( image.i == my.imageID )
+					switch ( image.i === my.imageID )
 					{
 						case false:
 							image.onclick = function() { my.glideTo(this.i);};
@@ -632,7 +617,7 @@ function ImageFlow ()
 					image.style.visibility = 'visible';
 
 					/* Change onclick function of the focussed image */
-					switch ( image.i == my.imageID )
+					switch ( image.i === my.imageID )
 					{
 						case false:
 							image.onclick = function() { my.glideTo(this.i);};
@@ -645,7 +630,7 @@ function ImageFlow ()
 							}
 							break;
 					}
-				}	
+				}
 				my.imagesDiv.style.marginLeft = (x - my.totalImagesWidth) + 'px';
 			}
 
@@ -658,7 +643,7 @@ function ImageFlow ()
 	this.glideTo = function(imageID)
 	{
 		/* Check for jumppoints */
-		var jumpTarget, clonedImageID;
+		let jumpTarget, clonedImageID;
 		if(my.circular)
 		{
 			/* Trigger left jumppoint */
@@ -678,20 +663,20 @@ function ImageFlow ()
 				/* Set jump target to the same cloned image on the left */
 				clonedImageID = my.imageFocusMax-1;
 				jumpTarget = -clonedImageID * my.xStep;
-				
+
 				/* Set the imageID to the first image */
 				imageID = clonedImageID+1;
 			}
 		}
 
 		/* Calculate new image position target */
-		var x = -imageID * my.xStep;
+		const x = -imageID * my.xStep;
 		this.target = x;
 		this.memTarget = x;
 		this.imageID = imageID;
 
 		/* Display new caption */
-		var caption = my.imagesDiv.childNodes[imageID].getAttribute('alt');
+		let caption = my.imagesDiv.childNodes[imageID].getAttribute('alt');
 		if (caption === '' || my.captions === false)
 		{
 			caption = '&nbsp;';
@@ -720,12 +705,12 @@ function ImageFlow ()
 			my.imagesDiv.childNodes[imageID].pc = my.imagesDiv.childNodes[imageID].pc * my.imageFocusM;
 
 			/* Set opacity for the other images that are displayed */
-			var opacityValue = 0;
-			var rightID = 0;
-			var leftID = 0;
-			var last = my.opacityArray.length;
+			let opacityValue = 0;
+			let rightID = 0;
+			let leftID = 0;
+			const last = my.opacityArray.length;
 
-			for (var i = 1; i < (my.imageFocusMax+1); i++)
+			for (let i = 1; i < (my.imageFocusMax+1); i++)
 			{
 				if((i+1) > last)
 				{
@@ -793,7 +778,7 @@ function ImageFlow ()
 		{
 			my.Slideshow.interrupt();
 		}
-		
+
 		/* Glide to new imageID */
 		my.glideTo(imageID);
 	};
@@ -801,663 +786,633 @@ function ImageFlow ()
 
 	/* Slideshow function */
 	this.Slideshow =
-	{
-		direction: 1,
-		
-		init: function()
 		{
-			/* Call start() if autoplay is enabled, stop() if it is disabled */
-			(my.slideshowAutoplay) ? my.Slideshow.start() : my.Slideshow.stop();	
-		},
+			direction: 1,
 
-		interrupt: function()
-		{	
-			/* Remove interrupt event */
-			my.Helper.removeEvent(my.ImageFlowDiv,'click',my.Slideshow.interrupt);
-			
-			/* Interrupt the slideshow */
-			my.Slideshow.stop();
-		},
-
-		addInterruptEvent: function()
-		{
-			/* A click anywhere inside the ImageFlow div interrupts the slideshow */
-			my.Helper.addEvent(my.ImageFlowDiv,'click',my.Slideshow.interrupt);
-		},
-
-		start: function()
-		{
-			/* Set button style to pause */
-			my.Helper.setClassName(my.buttonSlideshow, 'slideshow pause');
-
-			/* Set onclick behaviour to stop */
-			my.buttonSlideshow.onclick = function () { my.Slideshow.stop(); };
-
-			/* Set slide interval */
-			my.Slideshow.action = window.setInterval(my.Slideshow.slide, my.slideshowSpeed);
-
-			/* Allow the user to always interrupt the slideshow */
-			window.setTimeout(my.Slideshow.addInterruptEvent, 100);
-		},
-
-		stop: function()
-		{
-			/* Set button style to play */
-			my.Helper.setClassName(my.buttonSlideshow, 'slideshow play');
-			
-			/* Set onclick behaviour to start */
-			my.buttonSlideshow.onclick = function () { my.Slideshow.start(); };
-			
-			/* Clear slide interval */
-			window.clearInterval(my.Slideshow.action);
-		},
-
-		slide: function()
-		{
-			var newImageID = my.imageID + my.Slideshow.direction;
-			var reverseDirection = false;
-			
-			/* Reverse direction at the last image on the right */
-			if(newImageID === my.max)
+			init: function()
 			{
-				my.Slideshow.direction = -1;
-				reverseDirection = true;
-			}
-			
-			/* Reverse direction at the last image on the left */
-			if(newImageID < 0)
+				/* Call start() if autoplay is enabled, stop() if it is disabled */
+				(my.slideshowAutoplay) ? my.Slideshow.start() : my.Slideshow.stop();
+			},
+
+			interrupt: function()
 			{
-				my.Slideshow.direction = 1;
-				reverseDirection = true;
+				/* Remove interrupt event */
+				my.Helper.removeEvent(my.ImageFlowDiv,'click',my.Slideshow.interrupt);
+
+				/* Interrupt the slideshow */
+				my.Slideshow.stop();
+			},
+
+			addInterruptEvent: function()
+			{
+				/* A click anywhere inside the ImageFlow div interrupts the slideshow */
+				my.Helper.addEvent(my.ImageFlowDiv,'click',my.Slideshow.interrupt);
+			},
+
+			start: function()
+			{
+				/* Set button style to pause */
+				my.Helper.setClassName(my.buttonSlideshow, 'slideshow pause');
+
+				/* Set onclick behaviour to stop */
+				my.buttonSlideshow.onclick = function () { my.Slideshow.stop(); };
+
+				/* Set slide interval */
+				my.Slideshow.action = window.setInterval(my.Slideshow.slide, my.slideshowSpeed);
+
+				/* Allow the user to always interrupt the slideshow */
+				window.setTimeout(my.Slideshow.addInterruptEvent, 100);
+			},
+
+			stop: function()
+			{
+				/* Set button style to play */
+				my.Helper.setClassName(my.buttonSlideshow, 'slideshow play');
+
+				/* Set onclick behaviour to start */
+				my.buttonSlideshow.onclick = function () { my.Slideshow.start(); };
+
+				/* Clear slide interval */
+				window.clearInterval(my.Slideshow.action);
+			},
+
+			slide: function()
+			{
+				const newImageID = my.imageID + my.Slideshow.direction;
+				let reverseDirection = false;
+
+				/* Reverse direction at the last image on the right */
+				if(newImageID === my.max)
+				{
+					my.Slideshow.direction = -1;
+					reverseDirection = true;
+				}
+
+				/* Reverse direction at the last image on the left */
+				if(newImageID < 0)
+				{
+					my.Slideshow.direction = 1;
+					reverseDirection = true;
+				}
+
+				/* If direction is reversed recall this method, else call the glideTo method */
+				(reverseDirection) ? my.Slideshow.slide() : my.glideTo(newImageID);
 			}
-			
-			/* If direction is reversed recall this method, else call the glideTo method */
-			(reverseDirection) ? my.Slideshow.slide() : my.glideTo(newImageID);
-		}
-	};
+		};
 
 
 	/* Mouse Wheel support */
 	this.MouseWheel =
-	{
-		init: function()
 		{
-			/* Init mouse wheel listener */
-			if(window.addEventListener)
+			init: function()
 			{
-				my.ImageFlowDiv.addEventListener('DOMMouseScroll', my.MouseWheel.get, false);
-			}
-			my.Helper.addEvent(my.ImageFlowDiv,'mousewheel',my.MouseWheel.get);
-		},
-
-		get: function(event)
-		{
-			var delta = 0;
-			if (!event)
-			{
-				event = window.event;
-			}
-			if (event.wheelDelta)
-			{
-				delta = event.wheelDelta / 120;
-			}
-			else if (event.detail)
-			{
-				delta = -event.detail / 3;
-			}
-			if (delta)
-			{
-				my.MouseWheel.handle(delta);
-			}
-			my.Helper.suppressBrowserDefault(event);
-		},
-
-		handle: function(delta)
-		{
-			var change = false;
-			var newImageID = 0;
-			if(delta > 0)
-			{
-				if(my.imageID >= 1)
+				/* Init mouse wheel listener */
+				if(window.addEventListener)
 				{
-					newImageID = my.imageID -1;
-					change = true;
+					my.ImageFlowDiv.addEventListener('DOMMouseScroll', my.MouseWheel.get, false);
+				}
+				my.Helper.addEvent(my.ImageFlowDiv,'wheel',my.MouseWheel.get);
+			},
+
+			get: function(event)
+			{
+				let delta = 0;
+				if (!event)
+				{
+					event = window.event;
+				}
+				if (event.wheelDelta)
+				{
+					delta = event.wheelDelta / 120;
+				}
+				else if (event.detail)
+				{
+					delta = -event.detail / 3;
+				}
+				if (delta)
+				{
+					my.MouseWheel.handle(delta);
+				}
+				my.Helper.suppressBrowserDefault(event);
+			},
+
+			handle: function(delta)
+			{
+				let change = false;
+				let newImageID = 0;
+				if(delta > 0)
+				{
+					if(my.imageID >= 1)
+					{
+						newImageID = my.imageID -1;
+						change = true;
+					}
+				}
+				else
+				{
+					if(my.imageID < (my.max-1))
+					{
+						newImageID = my.imageID +1;
+						change = true;
+					}
+				}
+
+				/* Glide to next (mouse wheel down) / previous (mouse wheel up) image  */
+				if(change)
+				{
+					my.glideOnEvent(newImageID);
 				}
 			}
-			else
-			{
-				if(my.imageID < (my.max-1))
-				{
-					newImageID = my.imageID +1;
-					change = true;
-				}
-			}
-
-			/* Glide to next (mouse wheel down) / previous (mouse wheel up) image  */
-			if(change)
-			{
-				my.glideOnEvent(newImageID);
-			}
-		}
-	};
+		};
 
 
 	/* Mouse Dragging */
 	this.MouseDrag =
-	{
-		object: null,
-		objectX: 0,
-		mouseX: 0,
-		newX: 0,
-		busy: false,
-
-		/* Init mouse event listener */
-		init: function()
 		{
-			my.Helper.addEvent(my.ImageFlowDiv,'mousemove',my.MouseDrag.drag);
-			my.Helper.addEvent(my.ImageFlowDiv,'mouseup',my.MouseDrag.stop);
-			my.Helper.addEvent(document,'mouseup',my.MouseDrag.stop);
+			object: null,
+			objectX: 0,
+			mouseX: 0,
+			newX: 0,
+			busy: false,
 
-			/* Avoid text and image selection while dragging  */
-			my.ImageFlowDiv.onselectstart = function ()
+			/* Init mouse event listener */
+			init: function()
 			{
-				var selection = true;
-				if (my.MouseDrag.busy)
+				my.Helper.addEvent(my.ImageFlowDiv,'mousemove',my.MouseDrag.drag);
+				my.Helper.addEvent(my.ImageFlowDiv,'mouseup',my.MouseDrag.stop);
+				my.Helper.addEvent(document,'mouseup',my.MouseDrag.stop);
+
+				/* Avoid text and image selection while dragging  */
+				my.ImageFlowDiv.onselectstart = function ()
 				{
-					selection = false;
-				}
-				return selection;
-			};
-		},
+					let selection = true;
+					if (my.MouseDrag.busy)
+					{
+						selection = false;
+					}
+					return selection;
+				};
+			},
 
-		start: function(o)
-		{
-			my.MouseDrag.object = o;
-			my.MouseDrag.objectX = my.MouseDrag.mouseX - o.offsetLeft + my.newSliderX;
-		},
-
-		stop: function()
-		{
-			my.MouseDrag.object = null;
-			my.MouseDrag.busy = false;
-		},
-
-		drag: function(e)
-		{
-			var posx = 0;
-			if (!e)
+			start: function(o)
 			{
-				e = window.event;
+				my.MouseDrag.object = o;
+				my.MouseDrag.objectX = my.MouseDrag.mouseX - o.offsetLeft + my.newSliderX;
+			},
+
+			stop: function()
+			{
+				my.MouseDrag.object = null;
+				my.MouseDrag.busy = false;
+			},
+
+			drag: function(e)
+			{
+				let posx = 0;
+				if (!e)
+				{
+					e = window.event;
+				}
+				if (e.pageX)
+				{
+					posx = e.pageX;
+				}
+				else if (e.clientX)
+				{
+					posx = e.clientX + document.body.scrollLeft	+ document.documentElement.scrollLeft;
+				}
+				my.MouseDrag.mouseX = posx;
+
+				if(my.MouseDrag.object !== null)
+				{
+					let newX = (my.MouseDrag.mouseX - my.MouseDrag.objectX) + my.sliderWidth;
+
+					/* Make sure, that the slider is moved in proper relation to previous movements by the glideTo function */
+					if(newX < ( - my.newSliderX))
+					{
+						newX = - my.newSliderX;
+					}
+					if(newX > (my.scrollbarWidth - my.newSliderX))
+					{
+						newX = my.scrollbarWidth - my.newSliderX;
+					}
+
+					/* Set new slider position */
+					let step, imageID;
+					if(my.circular)
+					{
+						step = (newX + my.newSliderX) / (my.scrollbarWidth / (my.max-(my.imageFocusMax*2)-1));
+						imageID = Math.round(step)+my.imageFocusMax;
+					}
+					else
+					{
+						step = (newX + my.newSliderX) / (my.scrollbarWidth / (my.max-1));
+						imageID = Math.round(step);
+					}
+					my.MouseDrag.newX = newX;
+					my.MouseDrag.object.style.left = newX + 'px';
+					if(my.imageID !== imageID)
+					{
+						my.glideOnEvent(imageID);
+					}
+					my.MouseDrag.busy = true;
+				}
 			}
-			if (e.pageX)
-			{
-				posx = e.pageX;
-			}
-			else if (e.clientX)
-			{
-				posx = e.clientX + document.body.scrollLeft	+ document.documentElement.scrollLeft;
-			}
-			my.MouseDrag.mouseX = posx;
-
-			if(my.MouseDrag.object !== null)
-			{
-				var newX = (my.MouseDrag.mouseX - my.MouseDrag.objectX) + my.sliderWidth;
-
-				/* Make sure, that the slider is moved in proper relation to previous movements by the glideTo function */
-				if(newX < ( - my.newSliderX))
-				{
-					newX = - my.newSliderX;
-				}
-				if(newX > (my.scrollbarWidth - my.newSliderX))
-				{
-					newX = my.scrollbarWidth - my.newSliderX;
-				}
-
-				/* Set new slider position */
-				var step, imageID;
-				if(my.circular)
-				{
-					step = (newX + my.newSliderX) / (my.scrollbarWidth / (my.max-(my.imageFocusMax*2)-1));
-					imageID = Math.round(step)+my.imageFocusMax;
-				}
-				else
-				{
-					step = (newX + my.newSliderX) / (my.scrollbarWidth / (my.max-1));
-					imageID = Math.round(step);
-				}
-				my.MouseDrag.newX = newX;
-				my.MouseDrag.object.style.left = newX + 'px';
-				if(my.imageID !== imageID)
-				{
-					my.glideOnEvent(imageID);
-				}
-				my.MouseDrag.busy = true;
-			}
-		}
-	};
+		};
 
 
 	/* Safari touch events on the iPhone and iPod Touch */
 	this.Touch =
-	{
-		x: 0,
-		startX: 0,
-		stopX: 0,
-		busy: false,
-		first: true,
-
-		/* Init touch event listener */
-		init: function()
 		{
-			my.Helper.addEvent(my.navigationDiv,'touchstart',my.Touch.start);
-			my.Helper.addEvent(document,'touchmove',my.Touch.handle);
-			my.Helper.addEvent(document,'touchend',my.Touch.stop);	
-		},
-		
-		isOnNavigationDiv: function(e)
-		{
-			var state = false;
-			if(e.touches)
+			triggerElementID : null,
+			fingerCount : 0,
+			startX : 0,
+			startY : 0,
+			curX : 0,
+			curY : 0,
+			deltaX : 0,
+			deltaY : 0,
+			horzDiff : 0,
+			vertDiff : 0,
+			minLength : 10,
+			swipeLength : 0,
+			swipeAngle : null,
+			swipeDirection : null,
+			/* Init touch event listener */
+			init: function()
 			{
-				var target = e.touches[0].target;
-				if(target === my.navigationDiv || target === my.sliderDiv || target === my.scrollbarDiv)
-				{
-					state = true;
-				}
-			}
-			return state;
-		},
+				my.Helper.addEvent(my.imagesDiv,'touchstart',my.Touch.start);
+				my.Helper.addEvent(document,'touchmove',my.Touch.handle);
+				my.Helper.addEvent(document,'touchend',my.Touch.stop);
+				my.Helper.addEvent(document,'touchcancel',my.Touch.cancel);
+			},
 
-		getX: function(e)
-		{
-			var x = 0;
-			if(e.touches)
+			start: function(event)
 			{
-				x = e.touches[0].pageX;
-			}
-			return x;
-		},
-
-		start: function(e)
-		{
-			my.Touch.startX = my.Touch.getX(e);
-			my.Touch.busy = true;
-			my.Helper.suppressBrowserDefault(e);
-		},
-
-		isBusy: function()
-		{
-			var busy = false;
-			if(my.Touch.busy)
+				my.Touch.fingerCount = event.touches.length;
+				if ( my.Touch.fingerCount === 1 ) {
+					my.Touch.startX = event.touches[0].pageX;
+					my.Touch.startY = event.touches[0].pageY;
+					my.Touch.triggerElementID = my.ImageFlowID;
+				}
+			},
+			handle: function(event)
 			{
-				busy = true;
-			}
-			return busy;
-		},
-
-		/* Handle touch event position within the navigation div */
-		handle: function(e)
-		{
-			if(my.Touch.isBusy && my.Touch.isOnNavigationDiv(e))
+				if ( event.touches.length === 1 ) {
+					my.Touch.curX = event.touches[0].pageX;
+					my.Touch.curY = event.touches[0].pageY;
+				}
+			},
+			stop: function()
 			{
-				var max = (my.circular) ? (my.max-(my.imageFocusMax*2)-1) : (my.max-1);
-				if(my.Touch.first)
-				{
-					my.Touch.stopX = (max - my.imageID) * (my.imagesDivWidth / max);
-					my.Touch.first = false;
-				}
-				var newX = -(my.Touch.getX(e) - my.Touch.startX - my.Touch.stopX);
+				if ( my.Touch.fingerCount === 1 && my.Touch.curX !== 0 ) {
+					my.Touch.caluculateAngle();
+					my.Touch.determineSwipeDirection();
+					my.Touch.processingRoutine();
+					my.Touch.cancel();
 
-				/* Map x-axis touch coordinates in range of the ImageFlow width */
-				if(newX < 0)
-				{
-					newX = 0;
 				}
-				if(newX > my.imagesDivWidth)
-				{
-					newX = my.imagesDivWidth;
+			},
+			cancel: function() {
+				my.Touch.fingerCount = 0;
+				my.Touch.startX = 0;
+				my.Touch.startY = 0;
+				my.Touch.curX = 0;
+				my.Touch.curY = 0;
+				my.Touch.deltaX = 0;
+				my.Touch.deltaY = 0;
+				my.Touch.horzDiff = 0;
+				my.Touch.vertDiff = 0;
+				my.Touch.swipeLength = 0;
+				my.Touch.swipeAngle = null;
+				my.Touch.swipeDirection = null;
+				my.Touch.triggerElementID = null;
+			},
+			caluculateAngle : function () {
+				const X = my.Touch.startX - my.Touch.curX;
+				const Y = my.Touch.curY - my.Touch.startY;
+				Math.round(Math.sqrt(Math.pow(X,2)+Math.pow(Y,2)));
+				const r = Math.atan2(Y, X);
+				my.Touch.swipeAngle = Math.round(r*180/Math.PI);
+				if ( my.Touch.swipeAngle < 0 ) { my.Touch.swipeAngle =  360 - Math.abs(my.Touch.swipeAngle); }
+			},
+			determineSwipeDirection : function (){
+				if ( (my.Touch.swipeAngle <= 45) && (my.Touch.swipeAngle >= 0) ) {
+					my.Touch.swipeDirection = 'left';
+				} else if ( (my.Touch.swipeAngle <= 360) && (my.Touch.swipeAngle >= 315) ) {
+					my.Touch.swipeDirection = 'left';
+				} else if ( (my.Touch.swipeAngle >= 135) && (my.Touch.swipeAngle <= 225) ) {
+					my.Touch.swipeDirection = 'right';
+				} else if ( (my.Touch.swipeAngle > 45) && (my.Touch.swipeAngle < 135) ) {
+					my.Touch.swipeDirection = 'down';
+				} else {
+					my.Touch.swipeDirection = 'up';
 				}
-
-				my.Touch.x = newX;
-				
-				var imageID = Math.round(newX / (my.imagesDivWidth / max));
-				imageID = max - imageID;
-				if(my.imageID !== imageID)
-				{
-					if(my.circular)
-					{
-						imageID = imageID + my.imageFocusMax;
+			},
+			processingRoutine: function () {
+				document.getElementById(my.Touch.triggerElementID);
+				if (my.Touch.swipeDirection === 'right' ) {
+					if(my.imageID >= 1) {
+						my.glideOnEvent( my.imageID - 1);
 					}
-					my.glideOnEvent(imageID);
+				} else if (my.Touch.swipeDirection === 'left') {
+					if(my.imageID < (my.max-1)) {
+						my.glideOnEvent( my.imageID + 1);
+					}
 				}
-				my.Helper.suppressBrowserDefault(e);
 			}
-		},
-
-		stop: function()
-		{
-			my.Touch.stopX = my.Touch.x;
-			my.Touch.busy = false;
-		}
-	};
+		};
 
 
 	/* Key support */
 	this.Key =
-	{
-		/* Init key event listener */
-		init: function()
 		{
-			document.onkeydown = function(event){ my.Key.handle(event); };
-		},
-
-		/* Handle the arrow keys */
-		handle: function(event)
-		{
-			var charCode  = my.Key.get(event);
-			switch (charCode)
+			/* Init key event listener */
+			init: function()
 			{
-				/* Right arrow key */
-				case 39:
-					my.MouseWheel.handle(-1);
-					break;
+				document.onkeydown = function(event){ my.Key.handle(event); };
+			},
 
-				/* Left arrow key */
-				case 37:
-					my.MouseWheel.handle(1);
-					break;
+			/* Handle the arrow keys */
+			handle: function(event)
+			{
+				const charCode = my.Key.get(event);
+				switch (charCode)
+				{
+					/* Right arrow key */
+					case 39:
+						my.MouseWheel.handle(-1);
+						break;
+
+					/* Left arrow key */
+					case 37:
+						my.MouseWheel.handle(1);
+						break;
+				}
+			},
+
+			/* Get the current keycode */
+			get: function(event)
+			{
+				event = event || window.event;
+				return event.keyCode;
 			}
-		},
-
-		/* Get the current keycode */
-		get: function(event)
-		{
-			event = event || window.event;
-			return event.keyCode;
-		}
-	};
+		};
 
 
 	/* Helper functions */
 	this.Helper =
-	{
-		/* Add events */
-		addEvent: function(obj, type, fn)
 		{
-			if(obj.addEventListener)
+			/* Add events */
+			addEvent: function(obj, type, fn)
 			{
-				obj.addEventListener(type, fn, false);
-			}
-			else if(obj.attachEvent)
-			{
-				obj["e"+type+fn] = fn;
-				obj[type+fn] = function() { obj["e"+type+fn]( window.event ); };
-				obj.attachEvent( "on"+type, obj[type+fn] );
-			}
-		},
-
-		/* Remove events */
-		removeEvent: function( obj, type, fn )
-		{
-			if (obj.removeEventListener)
-			{
-				obj.removeEventListener( type, fn, false );
-			}
-			else if (obj.detachEvent)
-			{
-				/* The IE breaks if you're trying to detach an unattached event http://msdn.microsoft.com/en-us/library/ms536411(VS.85).aspx */
-				if(obj[type+fn] === undefined)
+				if(obj.addEventListener)
 				{
-					alert('Helper.removeEvent » Pointer to detach event is undefined - perhaps you are trying to detach an unattached event?');
+					obj.addEventListener(type, fn, false);
 				}
-				obj.detachEvent( 'on'+type, obj[type+fn] );
-				obj[type+fn] = null;
-				obj['e'+type+fn] = null;
-			}
-		},
-
-		/* Set image opacity */
-		setOpacity: function(object, value)
-		{
-			if(my.opacity === true)
-			{
-				object.style.opacity = value/10;
-				object.style.filter = 'alpha(opacity=' + value*10 + ')';
-			}
-		},
-
-		/* Create HTML elements */
-		createDocumentElement: function(type, id, optionalClass)
-		{
-			var element = document.createElement(type);
-			element.setAttribute('id', my.ImageFlowID+'_'+id);
-			if(optionalClass !== undefined)
-			{
-				id += ' '+optionalClass;
-			}
-			my.Helper.setClassName(element, id);
-			return element;
-		},
-
-		/* Set CSS class */
-		setClassName: function(element, className)
-		{
-			if(element)
-			{
-				element.setAttribute('class', className);
-				element.setAttribute('className', className);
-			}
-		},
-
-		/* Suppress default browser behaviour to avoid image/text selection while dragging */
-		suppressBrowserDefault: function(e)
-		{
-			if(e.preventDefault)
-			{
-				e.preventDefault();
-			}
-			else
-			{
-				e.returnValue = false;
-			}
-			return false;
-		},
-
-		/* Add functions to the window.onresize event - can not be done by addEvent */
-		addResizeEvent: function()
-		{
-			var otherFunctions = window.onresize;
-			if(typeof window.onresize != 'function')
-			{
-				window.onresize = function()
+				else if(obj.attachEvent)
 				{
-					my.refresh();
-				};
-			}
-			else
+					obj["e"+type+fn] = fn;
+					obj[type+fn] = function() { obj["e"+type+fn]( window.event ); };
+					obj.attachEvent( "on"+type, obj[type+fn] );
+				}
+			},
+
+			/* Remove events */
+			removeEvent: function( obj, type, fn )
 			{
-				window.onresize = function(){
-					if (otherFunctions)
+				if (obj.removeEventListener)
+				{
+					obj.removeEventListener( type, fn, false );
+				}
+				else if (obj.detachEvent)
+				{
+					/* The IE breaks if you're trying to detach an unattached event http://msdn.microsoft.com/en-us/library/ms536411(VS.85).aspx */
+					if(obj[type+fn] === undefined)
 					{
-						otherFunctions();
+						alert('Helper.removeEvent » Pointer to detach event is undefined - perhaps you are trying to detach an unattached event?');
 					}
-					my.refresh();
-				};
-			}
-		}
-	};
-}
+					obj.detachEvent( 'on'+type, obj[type+fn] );
+					obj[type+fn] = null;
+					obj['e'+type+fn] = null;
+				}
+			},
 
-/* DOMContentLoaded event handler - by Tanny O'Haley [4] */
-var domReadyEvent =
-{
-	name: "domReadyEvent",
-	/* Array of DOMContentLoaded event handlers.*/
-	events: {},
-	domReadyID: 1,
-	bDone: false,
-	DOMContentLoadedCustom: null,
-
-	/* Function that adds DOMContentLoaded listeners to the array.*/
-	add: function(handler)
-	{
-		/* Assign each event handler a unique ID. If the handler has an ID, it has already been added to the events object or been run.*/
-		if (!handler.$$domReadyID)
-		{
-			handler.$$domReadyID = this.domReadyID++;
-
-			/* If the DOMContentLoaded event has happened, run the function. */
-			if(this.bDone)
+			/* Set image opacity */
+			setOpacity: function(object, value)
 			{
-				handler();
-			}
-
-			/* store the event handler in the hash table */
-			this.events[handler.$$domReadyID] = handler;
-		}
-	},
-
-	remove: function(handler)
-	{
-		/* Delete the event handler from the hash table */
-		if (handler.$$domReadyID)
-		{
-			delete this.events[handler.$$domReadyID];
-		}
-	},
-
-	/* Function to process the DOMContentLoaded events array. */
-	run: function()
-	{
-		/* quit if this function has already been called */
-		if (this.bDone)
-		{
-			return;
-		}
-
-		/* Flag this function so we don't do the same thing twice */
-		this.bDone = true;
-
-		/* iterates through array of registered functions */
-		for (var i in this.events)
-		{
-			this.events[i]();
-		}
-	},
-
-	schedule: function()
-	{
-		/* Quit if the init function has already been called*/
-		if (this.bDone)
-		{
-			return;
-		}
-
-		/* First, check for Safari or KHTML.*/
-		if(/KHTML|WebKit/i.test(navigator.userAgent))
-		{
-			if(/loaded|complete/.test(document.readyState))
-			{
-				this.run();
-			}
-			else
-			{
-				/* Not ready yet, wait a little more.*/
-				setTimeout(this.name + ".schedule()", 100);
-			}
-		}
-		else if(document.getElementById("__ie_onload"))
-		{
-			/* Second, check for IE.*/
-			return true;
-		}
-
-		/* Check for custom developer provided function.*/
-		if(typeof this.DOMContentLoadedCustom === "function")
-		{
-			/* if DOM methods are supported, and the body element exists (using a double-check
-			including document.body, for the benefit of older moz builds [eg ns7.1] in which
-			getElementsByTagName('body')[0] is undefined, unless this script is in the body section) */
-			if(typeof document.getElementsByTagName !== 'undefined' && (document.getElementsByTagName('body')[0] !== null || document.body !== null))
-			{
-				/* Call custom function. */
-				if(this.DOMContentLoadedCustom())
+				if(my.opacity === true)
 				{
-					this.run();
+					object.style.opacity = value/10;
+					object.style.filter = 'alpha(opacity=' + value*10 + ')';
+				}
+			},
+
+			/* Create HTML elements */
+			createDocumentElement: function(type, id, optionalClass)
+			{
+				const element = document.createElement(type);
+				element.setAttribute('id', my.ImageFlowID+'_'+id);
+				if(optionalClass !== undefined)
+				{
+					id += ' '+optionalClass;
+				}
+				my.Helper.setClassName(element, id);
+				return element;
+			},
+
+			/* Set CSS class */
+			setClassName: function(element, className)
+			{
+				if(element)
+				{
+					element.setAttribute('class', className);
+					element.setAttribute('className', className);
+				}
+			},
+
+			/* Suppress default browser behaviour to avoid image/text selection while dragging */
+			suppressBrowserDefault: function(e)
+			{
+				if(e.preventDefault)
+				{
+					e.preventDefault();
 				}
 				else
 				{
-					/* Not ready yet, wait a little more. */
-					setTimeout(this.name + ".schedule()", 250);
+					e.returnValue = false;
+				}
+				return false;
+			},
+
+			/* Add functions to the window.onresize event - can not be done by addEvent */
+			addResizeEvent: function()
+			{
+				const otherFunctions = window.onresize;
+				if(typeof window.onresize != 'function')
+				{
+					window.onresize = function()
+					{
+						my.refresh();
+					};
+				}
+				else
+				{
+					window.onresize = function(){
+						if (otherFunctions)
+						{
+							otherFunctions();
+						}
+						my.refresh();
+					};
 				}
 			}
-		}
-		return true;
-	},
+		};
+}
 
-	init: function()
+/* DOMContentLoaded event handler - by Tanny O'Haley [4] */
+const domReadyEvent =
 	{
-		/* If addEventListener supports the DOMContentLoaded event.*/
-		if(document.addEventListener)
-		{
-			document.addEventListener("DOMContentLoaded", function() { domReadyEvent.run(); }, false);
-		}
+		name: "domReadyEvent",
+		/* Array of DOMContentLoaded event handlers.*/
+		events: {},
+		domReadyID: 1,
+		bDone: false,
+		DOMContentLoadedCustom: null,
 
-		/* Schedule to run the init function.*/
-		setTimeout("domReadyEvent.schedule()", 100);
+		/* Function that adds DOMContentLoaded listeners to the array.*/
+		add: function (handler) {
+			/* Assign each event handler a unique ID. If the handler has an ID, it has already been added to the events object or been run.*/
+			if (!handler.$$domReadyID) {
+				handler.$$domReadyID = this.domReadyID++;
 
-		function run()
-		{
-			domReadyEvent.run();
-		}
-
-		/* Just in case window.onload happens first, add it to onload using an available method.*/
-		if(typeof addEvent !== "undefined")
-		{
-			addEvent(window, "load", run);
-		}
-		else if(document.addEventListener)
-		{
-			document.addEventListener("load", run, false);
-		}
-		else if(typeof window.onload === "function")
-		{
-			var oldonload = window.onload;
-			window.onload = function()
-			{
-				domReadyEvent.run();
-				oldonload();
-			};
-		}
-		else
-		{
-			window.onload = run;
-		}
-
-		/* for Internet Explorer */
-		/*@cc_on
-			@if (@_win32 || @_win64)
-			document.write("<script id=__ie_onload defer src=\"//:\"><\/script>");
-			var script = document.getElementById("__ie_onload");
-			script.onreadystatechange = function()
-			{
-				if (this.readyState == "complete")
-				{
-					domReadyEvent.run(); // call the onload handler
+				/* If the DOMContentLoaded event has happened, run the function. */
+				if (this.bDone) {
+					handler();
 				}
-			};
-			@end
-		@*/
-	}
-};
 
-var domReady = function(handler) { domReadyEvent.add(handler); };
+				/* store the event handler in the hash table */
+				this.events[handler.$$domReadyID] = handler;
+			}
+		},
+
+		remove: function (handler) {
+			/* Delete the event handler from the hash table */
+			if (handler.$$domReadyID) {
+				delete this.events[handler.$$domReadyID];
+			}
+		},
+
+		/* Function to process the DOMContentLoaded events array. */
+		run: function () {
+			/* quit if this function has already been called */
+			if (this.bDone) {
+				return;
+			}
+
+			/* Flag this function so we don't do the same thing twice */
+			this.bDone = true;
+
+			/* iterates through array of registered functions */
+			for (const i in this.events) {
+				this.events[i]();
+			}
+		},
+
+		schedule: function () {
+			/* Quit if the init function has already been called*/
+			if (this.bDone) {
+				return;
+			}
+
+			/* First, check for Safari or KHTML.*/
+			if (/KHTML|WebKit/i.test(navigator.userAgent)) {
+				if (/loaded|complete/.test(document.readyState)) {
+					this.run();
+				} else {
+					/* Not ready yet, wait a little more.*/
+					setTimeout(this.name + ".schedule()", 100);
+				}
+			} else if (document.getElementById("__ie_onload")) {
+				/* Second, check for IE.*/
+				return true;
+			}
+
+			/* Check for custom developer provided function.*/
+			if (typeof this.DOMContentLoadedCustom === "function") {
+				/* if DOM methods are supported, and the body element exists (using a double-check
+                including document.body, for the benefit of older moz builds [eg ns7.1] in which
+                getElementsByTagName('body')[0] is undefined, unless this script is in the body section) */
+				if (typeof document.getElementsByTagName !== 'undefined' && (document.getElementsByTagName('body')[0] !== null || document.body !== null)) {
+					/* Call custom function. */
+					if (this.DOMContentLoadedCustom()) {
+						this.run();
+					} else {
+						/* Not ready yet, wait a little more. */
+						setTimeout(this.name + ".schedule()", 250);
+					}
+				}
+			}
+			return true;
+		},
+
+		init: function () {
+			/* If addEventListener supports the DOMContentLoaded event.*/
+			if (document.addEventListener) {
+				document.addEventListener("DOMContentLoaded", function () {
+					domReadyEvent.run();
+				}, false);
+			}
+
+			/* Schedule to run the init function.*/
+			setTimeout("domReadyEvent.schedule()", 100);
+
+			function run() {
+				domReadyEvent.run();
+			}
+
+			/* Just in case window.onload happens first, add it to onload using an available method.*/
+			if (typeof addEvent !== "undefined") {
+				addEvent(window, "load", run);
+			} else if (document.addEventListener) {
+				document.addEventListener("load", run, false);
+			} else if (typeof window.onload === "function") {
+				const oldonload = window.onload;
+				window.onload = function () {
+					domReadyEvent.run();
+					oldonload();
+				};
+			} else {
+				window.onload = run;
+			}
+
+			/* for Internet Explorer */
+			/*@cc_on
+                @if (@_win32 || @_win64)
+                document.write("<script id=__ie_onload defer src=\"//:\"><\/script>");
+                var script = document.getElementById("__ie_onload");
+                script.onreadystatechange = function()
+                {
+                    if (this.readyState == "complete")
+                    {
+                        domReadyEvent.run(); // call the onload handler
+                    }
+                };
+                @end
+            @*/
+		}
+	};
+
+const domReady = function (handler) {
+	domReadyEvent.add(handler);
+};
 domReadyEvent.init();
 
 
 /* Create ImageFlow instances when the DOM structure has been loaded */
 domReady(function()
 {
-	var instanceOne = new ImageFlow();
+	const instanceOne = new ImageFlow();
 	instanceOne.init({ ImageFlowID:'myImageFlow' });
 });
