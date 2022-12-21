@@ -1,5 +1,5 @@
 ﻿/*
-	*	 Name:       ImageFlowTheta
+    *	 Name:       ImageFlowTheta
     *    Version:    Version 0.9 (December 20 2022)
     *	 Author:     Bounza
     * 	 Original Author: Finn Rudolph
